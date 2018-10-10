@@ -5,7 +5,7 @@ import ReposList from "./ReposList.js";
 
 export default ({ login, avatar_url, handleLogOut, followers, events, name }) => (
   <div className="profile">
-    <h2>Hello {name}!</h2>
+    <h2 className="user-name">Hello {name}!</h2>
     <div className="user-avatar">
     <img src={avatar_url} alt={`${name}'s avatar`} />
     </div>
