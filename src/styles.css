@@ -1,0 +1,180 @@
+* {
+  box-sizing: border-box;
+}
+
+h1, h2, h3, h4, h5, h6, p {
+  margin-top: 0;
+}
+
+ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  text-align: left;
+}
+
+a {
+  text-decoration: none;
+  color: #3A3A3A;
+}
+a:hover {
+  color: #0366d6;
+}
+
+.App {
+  font-family: sans-serif;
+  font-size: 16px;
+  margin: 0 auto;
+  max-width: 1070px;
+  padding: 0 15px;
+}
+
+input {
+  padding: 10px;
+  width: 200px;
+  margin-bottom: 30px;
+  width: 100%;
+  font-size: 16px;
+}
+
+label {
+  display: block;
+  margin-bottom: 10px;
+}
+
+ul {
+  padding: 0;
+}
+
+button {
+  display: block;
+  width: 200px;
+  padding: 10px;
+  background: #4367F7;
+  border: none;
+  color: white;
+  border-radius:20px;
+  font-size: 18px;
+  box-shadow: 0 2px 2px rgba(0,0,0,0.07);
+  text-align: center;
+  margin: 0 auto;
+  transition: 0.1s ease-in;
+}
+button:hover {
+  background: #123ff5;
+}
+
+h2 {
+  color: rgba(0,0,0,.7);
+  text-align: center;
+  font-size: 50px;
+  margin-bottom: 80px;
+}
+
+.App-header {
+  text-align: center;
+  margin: 70px 0;
+  font-size: 40px;
+}
+
+.github-icon {
+  margin-right:40px;
+}
+
+.login-card {
+  width: 500px;
+  align-items:center;
+  border-radius:5px;
+  margin: 0 auto;
+  padding: 50px 70px 70px 70px;
+  /* box-shadow: 8px 10px 20px 0px rgba(46,61,73,0.15); */
+  box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14), 0 3px 1px -2px rgba(0,0,0,0.12), 0 1px 5px 0 rgba(0,0,0,0.2);
+}
+.login-card h2 {
+  font-size: 30px;
+  margin-bottom: 40px;
+}
+
+.profile {
+  margin-bottom: 100px;
+}
+.profile img {
+  width: 100px;
+  border-radius: 50%;
+}
+  .user-avatar > img {
+    width: 250px;
+  }
+
+  .user-avatar {
+    display: grid;
+    align-items: center;
+    justify-items: center;
+    margin-bottom: 90px;
+  }
+
+
+/* .follower img {
+  width: 60px;
+  border-radius: 50%;
+  margin-right: 20px;
+  margin-bottom: 18px;
+} */
+
+.open-pull-request {
+  color:limegreen;
+}
+
+.closed-pull-request {
+  color: orangered;
+}
+
+.followers-container, .forks-container {
+  margin: 70px 0;
+}
+
+.followers-list, .forked-repolist {
+  display: grid;
+  grid-gap: 50px;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  
+}
+.followers-list li, .forked-repolist li {
+  display: grid;
+  box-shadow: 8px 10px 20px 0px rgba(46,61,73,0.15);
+  border-radius: 5px;
+  align-items: center;
+  justify-items: center;
+  border-top: 3px solid #4367F7;
+  margin-bottom: 30px;
+}
+
+.followers-list img {
+  z-index: 1;
+  position: relative;
+  margin-top: -30px;
+}
+
+.followers-list li:hover,
+.forked-repolist li:hover {
+  background-color: rgba(0,0,0,0.1);
+}
+
+.followers-list p {
+  text-align: center;
+  margin: 30px 0;
+}
+
+/* FORKED REPOS */
+
+.forked-repolist li {
+  border-top: 3px solid #02b3e4;
+  padding: 30px 10px;
+}
+
+.bold { 
+  font-weight: 700;
+}
+.forked-repolist p {
+  text-align: center;
+}
