@@ -20,49 +20,45 @@ export const handleChangeFirstName = e => ({
 
 const getGithubUser = username => fetch(`https://api.github.com/users/${username}?per_page=100&access_token=${process.env.REACT_APP_TOKEN}`);
 
-const getGithubUserEvents = username => fetch(`https://api.github.com/users/${username}/events?per_page=100&access_token=${process.env.REACT_APP_TOKEN}`);
-
 const handleLogin = profile => ({
   type: USER_ACTIONS.LOGIN,
   payload: profile
 })
 
-// export const login = username => dispatch => {
-//   getGithubUser(username)
-//     .then(res => res.json())
-//     .then(profile => dispatch(handleLogin(profile)))
-// }
-
 export const login = username => dispatch => {
   getGithubUser(username)
     .then(res => res.json())
     .then(profile => dispatch(handleLogin(profile)));
-  getGithubUserEvents(username)
-    .then(res => res.json())
-    .then(events => {
-      const filteredEvents = events.filter(event => event.type === "ForkEvent" || event.type === "PullRequestEvent");
-      console.log(events);
-      return filteredEvents;
-    })
-    .then(data => {
-      const events = data.map(event => {
-        if (event.type === "PullRequestEvent") {
-          return fetch(event.payload.pull_request.url)
-          .then(res => res.json())
-          .then(data =>  ({...event, status: data.state, title: data.title, html_url: data.html_url }))
-        } else {
-          return event
-        }
-      });
-      Promise.all([...events]).then(events => dispatch(handleEvents(events)));
-    })
 };
+
+const getGithubUserEvents = username => fetch(`https://api.github.com/users/${username}/events?per_page=100&access_token=${process.env.REACT_APP_TOKEN}`);
 
 const handleEvents = events => ({
   type: USER_ACTIONS.FETCH_EVENTS,
   payload: events
 })
 
+export const fetchUsersEvents = username => dispatch => {
+  getGithubUserEvents(username)
+  .then(res => res.json())
+  .then(events => {
+    const filteredEvents = events.filter(event => event.type === "ForkEvent" || event.type === "PullRequestEvent");
+    console.log(events);
+    return filteredEvents;
+  })
+  .then(data => {
+    const events = data.map(event => {
+      if (event.type === "PullRequestEvent") {
+        return fetch(event.payload.pull_request.url)
+        .then(res => res.json())
+        .then(data =>  ({...event, status: data.state, title: data.title, html_url: data.html_url }))
+      } else {
+        return event
+      }
+    });
+    Promise.all([...events]).then(events => dispatch(handleEvents(events)));
+  })
+}
 
 export const handleLogout = () => ({
   type: USER_ACTIONS.LOGOUT
