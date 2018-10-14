@@ -1,46 +1,52 @@
 import { createStore, applyMiddleware } from "redux";
 import thunk from "redux-thunk";
+import { USER_ACTIONS } from './actions';
 
 const initialState = {
   loggedIn: false,
   username: "",
   firstName: "",
   profile: {},
-  followers: [],
-  events:[]
+  repos: [],
+  pullRequests: []
 };
 
 const rootReducer = (state = initialState, action) => {
   switch (action.type) {
-    case "CHANGE_USERNAME":
+    case USER_ACTIONS.CHANGE_USERNAME:
       return {
         ...state,
         username: action.payload
       };
-    case "CHANGE_FIRST_NAME":
+    case USER_ACTIONS.CHANGE_FIRST_NAME:
       return {
         ...state,
         firstName: action.payload
       }
-    case "LOGIN":
+    case USER_ACTIONS.LOGIN:
       return {
         ...state,
         loggedIn: true,
         profile: action.payload
       }
-    case "LOGOUT":
+    case USER_ACTIONS.LOGOUT:
       return {
         ...state,
         loggedIn: false,
-        profile: {}
-        // username: "",
-        // firstName: "",
+        profile: {},
+        username: "",
+        firstName: "",
       }
-    case "FETCH_EVENTS":
+    case USER_ACTIONS.SAVE_FORKED_REPOS:
       return {
         ...state,
-        events: action.payload
+        repos: action.payload
       }
+    case USER_ACTIONS.SAVE_PULL_REQUESTS:
+      return {
+        ...state,
+        pullRequests: action.payload
+    }
     default:
       return state;
   }

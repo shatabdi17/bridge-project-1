@@ -1,9 +1,10 @@
-const USER_ACTIONS = {
+export const USER_ACTIONS = {
   CHANGE_USERNAME: "CHANGE_USERNAME",
   CHANGE_FIRST_NAME: "CHANGE_FIRST_NAME",
   LOGIN: "LOGIN",
   LOGOUT: "LOGOUT",
-  FETCH_EVENTS: "FETCH_EVENTS"
+  SAVE_FORKED_REPOS: "SAVE_FORKED_REPOS",
+  SAVE_PULL_REQUESTS: "SAVE_PULL_REQUESTS",
 };
 
 export const handleChangeUsername = e => ({
@@ -31,30 +32,29 @@ export const login = username => dispatch => {
 
 const getGithubUserEvents = username => fetch(`https://api.github.com/users/${username}/events?per_page=100&access_token=${process.env.REACT_APP_TOKEN}`);
 
-const handleEvents = events => ({
-  type: USER_ACTIONS.FETCH_EVENTS,
-  payload: events
+const handleForkedRepositories = repos => ({
+  type: USER_ACTIONS.SAVE_FORKED_REPOS,
+  payload: repos
 })
+
+const handlePullRequests = pullRequests => ({
+  type: USER_ACTIONS.SAVE_PULL_REQUESTS,
+  payload: pullRequests
+})
+
+const FORK_EVENT = 'ForkEvent';
+const PULL_REQUEST_EVENT = 'PullRequestEvent';
 
 export const fetchUsersEvents = username => dispatch => {
   getGithubUserEvents(username)
   .then(res => res.json())
   .then(events => {
-    const filteredEvents = events.filter(event => event.type === "ForkEvent" || event.type === "PullRequestEvent");
-    console.log(events);
-    return filteredEvents;
-  })
-  .then(data => {
-    const events = data.map(event => {
-      if (event.type === "PullRequestEvent") {
-        return fetch(event.payload.pull_request.url)
-        .then(res => res.json())
-        .then(data =>  ({...event, status: data.state, title: data.title, html_url: data.html_url }))
-      } else {
-        return event
-      }
-    });
-    Promise.all([...events]).then(events => dispatch(handleEvents(events)));
+    const forkedRepositories = events.filter(event => event.type === FORK_EVENT);
+    const pullRequests = events.filter(event => event.type === PULL_REQUEST_EVENT);
+    dispatch(handleForkedRepositories(forkedRepositories))
+    dispatch(handlePullRequests(pullRequests))
+    console.log('logging forkedRepositories', forkedRepositories);
+    console.log('logging pullRequests', pullRequests);
   })
 }
 

@@ -23,7 +23,6 @@ class App extends Component {
         {this.props.loggedIn ? (
           <Profile
             {...this.props.profile}
-            events={this.props.events}
             handleLogOut={this.props.handleLogout}
           />
         ) : (
@@ -40,9 +39,7 @@ class App extends Component {
   }
 }
 
-const mapStateToProps = state => {
-  return state;
-};
+const mapStateToProps = state => state;
 
 const mapDispatchToProps = {
   handleChangeUsername,
