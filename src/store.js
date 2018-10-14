@@ -5,7 +5,6 @@ import { USER_ACTIONS } from './actions';
 const initialState = {
   loggedIn: false,
   username: "",
-  firstName: "",
   profile: {},
   repos: [],
   pullRequests: []
@@ -18,11 +17,6 @@ const rootReducer = (state = initialState, action) => {
         ...state,
         username: action.payload
       };
-    case USER_ACTIONS.CHANGE_FIRST_NAME:
-      return {
-        ...state,
-        firstName: action.payload
-      }
     case USER_ACTIONS.LOGIN:
       return {
         ...state,

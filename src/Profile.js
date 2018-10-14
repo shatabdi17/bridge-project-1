@@ -10,7 +10,7 @@ export default ({ login, avatar_url, handleLogOut, name }) => (
       <img src={avatar_url} alt={`${name}'s avatar`} />
     </div>
     <ForkedRepos />	
-		<PullRequests events={[]} />
+		<PullRequests />
     <Button value="Log Out" handleClick={handleLogOut} />
   </div>
 );

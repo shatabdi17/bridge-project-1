@@ -1,6 +1,5 @@
 export const USER_ACTIONS = {
   CHANGE_USERNAME: "CHANGE_USERNAME",
-  CHANGE_FIRST_NAME: "CHANGE_FIRST_NAME",
   LOGIN: "LOGIN",
   LOGOUT: "LOGOUT",
   SAVE_FORKED_REPOS: "SAVE_FORKED_REPOS",
@@ -9,11 +8,6 @@ export const USER_ACTIONS = {
 
 export const handleChangeUsername = e => ({
   type: USER_ACTIONS.CHANGE_USERNAME,
-  payload: e.target.value,
-});
-
-export const handleChangeFirstName = e => ({
-  type: USER_ACTIONS.CHANGE_FIRST_NAME,
   payload: e.target.value,
 });
 
@@ -53,8 +47,6 @@ export const fetchUsersEvents = username => dispatch => {
     const pullRequests = events.filter(event => event.type === PULL_REQUEST_EVENT);
     dispatch(handleForkedRepositories(forkedRepositories))
     dispatch(handlePullRequests(pullRequests))
-    console.log('logging forkedRepositories', forkedRepositories);
-    console.log('logging pullRequests', pullRequests);
   })
 }
 
