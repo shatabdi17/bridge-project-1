@@ -3,10 +3,8 @@ const USER_ACTIONS = {
   CHANGE_FIRST_NAME: "CHANGE_FIRST_NAME",
   LOGIN: "LOGIN",
   LOGOUT: "LOGOUT",
-  FETCH_FOLLOWERS: "FETCH_FOLLOWERS",
   FETCH_EVENTS: "FETCH_EVENTS"
 };
-
 
 export const handleChangeUsername = e => ({
   type: USER_ACTIONS.CHANGE_USERNAME,
@@ -63,20 +61,3 @@ export const fetchUsersEvents = username => dispatch => {
 export const handleLogout = () => ({
   type: USER_ACTIONS.LOGOUT
 });
-
-const saveFollowers = followers => ({
-  type: USER_ACTIONS.FETCH_FOLLOWERS,
-  payload: followers
-});
-
-const getGithubFollowing = url => fetch(url);
-
-export const fetchFollowers = followersUrl => dispatch => {
-  getGithubFollowing(followersUrl)
-    .then(res => res.json())
-    .then(followers => dispatch(saveFollowers(followers)));
-}
-
-
-
-

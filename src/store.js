@@ -36,16 +36,11 @@ const rootReducer = (state = initialState, action) => {
         // username: "",
         // firstName: "",
       }
-    case "FETCH_FOLLOWERS":
+    case "FETCH_EVENTS":
       return {
         ...state,
-        followers: action.payload
+        events: action.payload
       }
-      case "FETCH_EVENTS":
-        return {
-          ...state,
-          events: action.payload
-        }
     default:
       return state;
   }
