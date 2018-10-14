@@ -5,6 +5,7 @@
   "keywords": [],
   "main": "src/index.js",
   "dependencies": {
+    "gulp": "^3.9.1",
     "react": "16.4.2",
     "react-dom": "16.4.2",
     "react-redux": "5.0.7",

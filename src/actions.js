@@ -1,6 +1,5 @@
 const USER_ACTIONS = {
   CHANGE_USERNAME: "CHANGE_USERNAME",
-  CHANGE_FIRST_NAME: "CHANGE_FIRST_NAME",
   LOGIN: "LOGIN",
   LOGOUT: "LOGOUT",
   FETCH_FOLLOWERS: "FETCH_FOLLOWERS",
@@ -10,11 +9,6 @@ const USER_ACTIONS = {
 
 export const handleChangeUsername = e => ({
   type: USER_ACTIONS.CHANGE_USERNAME,
-  payload: e.target.value,
-});
-
-export const handleChangeFirstName = e => ({
-  type: USER_ACTIONS.CHANGE_FIRST_NAME,
   payload: e.target.value,
 });
 

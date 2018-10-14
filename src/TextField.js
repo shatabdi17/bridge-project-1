@@ -1,6 +1,6 @@
 import React from "react";
 
-export default ({ value, handleChange, label, id, name }) => (
+export default ({ value, handleChange, label, id, name, required }) => (
   <React.Fragment>
     <label htmlFor={id}>{label}</label>
     <input

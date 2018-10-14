@@ -4,7 +4,6 @@ import thunk from "redux-thunk";
 const initialState = {
   loggedIn: false,
   username: "",
-  firstName: "",
   profile: {},
   followers: [],
   events:[]
@@ -17,11 +16,6 @@ const rootReducer = (state = initialState, action) => {
         ...state,
         username: action.payload
       };
-    case "CHANGE_FIRST_NAME":
-      return {
-        ...state,
-        firstName: action.payload
-      }
     case "LOGIN":
       return {
         ...state,
